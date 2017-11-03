@@ -6,6 +6,7 @@ use Magento\Client\Rest\MagentoRestClient;
 
 class Zoey
 {
+    public $client;
 
     /**
      * Zoey constructor.
