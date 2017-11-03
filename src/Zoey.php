@@ -4,7 +4,7 @@ namespace Cosmicvibes\Zoeylaravel;
 
 use Magento\Client\Rest\MagentoRestClient;
 
-abstract class Zoey
+class Zoey
 {
 
     /**
