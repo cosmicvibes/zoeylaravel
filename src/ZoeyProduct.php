@@ -105,7 +105,7 @@ class ZoeyProduct extends Zoey
 
         // Add extra fields from config
         // TODO: Guard against this being missing
-        $config_extra_product_fields = config('zoeylaravel.product_extra_fields');
+        $config_extra_product_fields = config('zoey.product_extra_fields');
         foreach ($config_extra_product_fields as $key => $value) {
             $this->{"$value"}       = $product[$key];
         }
