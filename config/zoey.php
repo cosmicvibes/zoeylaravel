@@ -18,6 +18,8 @@ return [
         'base_url'          => env('ZOEY_BASE_URL'),
     ],
 
+    // TODO: Guard against this being missing
+
     'product_extra_fields' => [
         //
     ],

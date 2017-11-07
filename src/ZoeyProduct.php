@@ -104,7 +104,8 @@ class ZoeyProduct extends Zoey
         $this->short_description = (array_key_exists('short_description', $product) ? $product['short_description'] : null);
 
         // Add extra fields from config
-        $config_extra_product_fields = config('odoolaravel.product_extra_fields');
+        // TODO: Guard against this being missing
+        $config_extra_product_fields = config('zoeylaravel.product_extra_fields');
         foreach ($config_extra_product_fields as $key => $value) {
             $this->{"$value"}       = $product[$key];
         }
