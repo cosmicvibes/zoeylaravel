@@ -43,7 +43,7 @@ class ZoeyStockItem extends Zoey
     {
 
         $tmp_stockitem = $this->client->get('/api/rest/stockitems'
-            . '?filter[0][attribute]=product_id&filter[0][eq][0]=' . $product_id
+            .'?filter[0][attribute]=product_id&filter[0][eq][0]='.$product_id
         )->send()->json();
 
         $stockitem = $tmp_stockitem[key($tmp_stockitem)];

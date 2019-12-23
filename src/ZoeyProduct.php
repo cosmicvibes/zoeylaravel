@@ -61,7 +61,7 @@ class ZoeyProduct extends Zoey
     {
 
         $tmp_product = $this->client->get('/api/rest/products'
-            . '?filter[0][attribute]=sku&filter[0][eq][0]=' . $sku
+            .'?filter[0][attribute]=sku&filter[0][eq][0]='.$sku
         )->send()->json();
 
         if (count($tmp_product) === 0) {
@@ -73,18 +73,24 @@ class ZoeyProduct extends Zoey
 
         // Get the product data
         $this->entity_id = (array_key_exists('entity_id', $product) ? $product['entity_id'] : null);
-        $this->attribute_set_id = (array_key_exists('attribute_set_id', $product) ? $product['attribute_set_id'] : null);
+        $this->attribute_set_id = (array_key_exists('attribute_set_id',
+            $product) ? $product['attribute_set_id'] : null);
         $this->type_id = (array_key_exists('type_id', $product) ? $product['type_id'] : null);
         $this->sku = (array_key_exists('sku', $product) ? $product['sku'] : null);
         $this->name = (array_key_exists('name', $product) ? $product['name'] : null);
         $this->url_key = (array_key_exists('url_key', $product) ? $product['url_key'] : null);
         $this->msrp_enabled = (array_key_exists('msrp_enabled', $product) ? $product['msrp_enabled'] : null);
-        $this->msrp_display_actual_price_type = (array_key_exists('msrp_display_actual_price_type', $product) ? $product['msrp_display_actual_price_type'] : null);
+        $this->msrp_display_actual_price_type = (array_key_exists('msrp_display_actual_price_type',
+            $product) ? $product['msrp_display_actual_price_type'] : null);
         $this->meta_title = (array_key_exists('meta_title', $product) ? $product['meta_title'] : null);
-        $this->meta_description = (array_key_exists('meta_description', $product) ? $product['meta_description'] : null);
-        $this->zoey_design_template = (array_key_exists('zoey_design_template', $product) ? $product['zoey_design_template'] : null);
-        $this->options_container = (array_key_exists('options_container', $product) ? $product['options_container'] : null);
-        $this->special_from_date = (array_key_exists('special_from_date', $product) ? $product['special_from_date'] : null);
+        $this->meta_description = (array_key_exists('meta_description',
+            $product) ? $product['meta_description'] : null);
+        $this->zoey_design_template = (array_key_exists('zoey_design_template',
+            $product) ? $product['zoey_design_template'] : null);
+        $this->options_container = (array_key_exists('options_container',
+            $product) ? $product['options_container'] : null);
+        $this->special_from_date = (array_key_exists('special_from_date',
+            $product) ? $product['special_from_date'] : null);
         $this->special_to_date = (array_key_exists('special_to_date', $product) ? $product['special_to_date'] : null);
         $this->news_from_date = (array_key_exists('news_from_date', $product) ? $product['news_from_date'] : null);
         $this->news_to_date = (array_key_exists('news_to_date', $product) ? $product['news_to_date'] : null);
@@ -92,8 +98,10 @@ class ZoeyProduct extends Zoey
         $this->visibility = (array_key_exists('visibility', $product) ? $product['visibility'] : null);
         $this->condition = (array_key_exists('condition', $product) ? $product['condition'] : null);
         $this->tax_class_id = (array_key_exists('tax_class_id', $product) ? $product['tax_class_id'] : null);
-        $this->apply_tier_price_to_variations = (array_key_exists('apply_tier_price_to_variations', $product) ? $product['apply_tier_price_to_variations'] : null);
-        $this->pix_widget_featured_product = (array_key_exists('pix_widget_featured_product', $product) ? $product['pix_widget_featured_product'] : null);
+        $this->apply_tier_price_to_variations = (array_key_exists('apply_tier_price_to_variations',
+            $product) ? $product['apply_tier_price_to_variations'] : null);
+        $this->pix_widget_featured_product = (array_key_exists('pix_widget_featured_product',
+            $product) ? $product['pix_widget_featured_product'] : null);
         $this->size = (array_key_exists('size', $product) ? $product['size'] : null);
         $this->special_price = (array_key_exists('special_price', $product) ? $product['special_price'] : null);
         $this->price = (array_key_exists('price', $product) ? $product['price'] : null);
@@ -101,21 +109,22 @@ class ZoeyProduct extends Zoey
         $this->msrp = (array_key_exists('msrp', $product) ? $product['msrp'] : null);
         $this->weight = (array_key_exists('weight', $product) ? $product['weight'] : null);
         $this->description = (array_key_exists('description', $product) ? $product['description'] : null);
-        $this->short_description = (array_key_exists('short_description', $product) ? $product['short_description'] : null);
+        $this->short_description = (array_key_exists('short_description',
+            $product) ? $product['short_description'] : null);
 
         // Add extra fields from config
         // TODO: Guard against this being missing
         $config_extra_product_fields = config('zoey.product_extra_fields');
         foreach ($config_extra_product_fields as $key => $value) {
-            $this->{"$value"}       = $product[$key];
+            $this->{"$value"} = $product[$key];
         }
 
         // Get the product categories
         $limit = 9999;
         $categories = $this->client->get('/api/rest/products/'
-            . $this->entity_id .
+            .$this->entity_id.
             '/categories/'
-            . '?limit=' . $limit)->send()->json();
+            .'?limit='.$limit)->send()->json();
 
         foreach ($categories as $category) {
             $category_data['category_id'] = $category['category_id'];
@@ -125,9 +134,9 @@ class ZoeyProduct extends Zoey
         // Get the product images
         $limit = 9999;
         $images = $this->client->get('/api/rest/products/'
-            . $this->entity_id .
+            .$this->entity_id.
             '/images/'
-            . '?limit=' . $limit)->send()->json();
+            .'?limit='.$limit)->send()->json();
 
         foreach ($images as $image) {
             $image_data['id'] = $image['id'];
