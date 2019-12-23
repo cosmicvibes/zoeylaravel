@@ -2,6 +2,8 @@
 
 namespace Cosmicvibes\Zoeylaravel;
 
+use Carbon\Carbon;
+
 class ZoeyOrder extends Zoey
 {
 
